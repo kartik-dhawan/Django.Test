@@ -1,6 +1,6 @@
 import requests
 
-endpoint = 'https://httpbin.org/anything'
+endpoint = 'http://localhost:8000/api/books/'
 
-res = requests.get(endpoint, json={'name': 'bond'})
+res = requests.get(endpoint, params={'id': 12}, json={'name': 'bond'})
 print(res.json())
