@@ -1,2 +1,4 @@
 venv
 Django.Test.code-workspace
+
+**/__pycache__/
