@@ -1,4 +1,5 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.core import serializers
 from books.models import Book
 from django.forms.models import model_to_dict
 import json
@@ -9,12 +10,6 @@ import json
 def get_all_books(request, *args, **kwargs):
     print(request.GET)
 
-    all_books = Book.objects.all()
-    first_book = Book.objects.all().first()
-    len = int(model_to_dict(Book.objects.all().last())['id'])
-    print('len')
-    print(len)
-
     data = {}
     # data['headers'] = dict(request.headers)
     # data['content_type'] = request.content_type
@@ -23,9 +18,9 @@ def get_all_books(request, *args, **kwargs):
     # data['params'] = dict(request.GET)
     # data['body'] = dict(json.loads(request.body))
 
-    if all_books:
-        global res
-        # res = model_to_dict()
-        res = all_books
+    all_books = Book.objects.all()
+    books_list = serializers.serialize('json', all_books)
 
-    return JsonResponse(model_to_dict(first_book))
+    print(books_list)
+
+    return JsonResponse(json.loads(books_list), safe=False)
