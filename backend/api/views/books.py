@@ -8,7 +8,7 @@ import json
 
 
 def get_all_books(request, *args, **kwargs):
-    print(request.GET)
+    # print(request.GET)
 
     data = {}
     # data['headers'] = dict(request.headers)
@@ -21,6 +21,6 @@ def get_all_books(request, *args, **kwargs):
     all_books = Book.objects.all()
     books_list = serializers.serialize('json', all_books)
 
-    print(books_list)
+    # print(books_list)
 
     return JsonResponse(json.loads(books_list), safe=False)

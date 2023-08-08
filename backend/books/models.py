@@ -7,3 +7,6 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=50)
     publishing_year = models.IntegerField()
+
+    def __str__(self):
+        return self.title
